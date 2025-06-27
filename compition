@@ -64,3 +64,26 @@ if __name__ == "__main__":
 # You can later connect these functions with your Flutter or Tauri app.
 # Add local storage using SQLite for saving quizzes/summaries offline.
 # Prepare a clean UI with 'Take Note Photo', 'Summarize', 'Q/A', and 'Quiz' buttons to trigger these functions.
+
+### Why you are seeing `Permission 'datasets.create' was denied` on Kaggle:
+
+✅ **Reason:** Kaggle restricts dataset creation for accounts that:
+- Have not verified their phone number.
+- Have not completed their profile.
+- Are new and have low activity.
+- Are on a network flagged for suspicious activity.
+
+✅ **What you should do:**
+1️⃣ Go to Kaggle **Account Settings > Account Verification**, add and verify your phone number.
+2️⃣ Complete your profile (bio, profile picture, linked email).
+3️⃣ If your account is new, run and share a few public notebooks to build activity.
+4️⃣ Check your internet connection; avoid VPNs if Kaggle is blocking actions.
+5️⃣ Wait 24-48 hours after verification; sometimes Kaggle gradually enables permissions.
+
+✅ **Alternate approach:**
+If you urgently need to submit and cannot create a dataset:
+- Directly upload your **CSV or Notebook** as a competition submission without using the dataset creation feature.
+- If the competition requires using your own dataset, upload your CSV to **Google Drive** and share the link in your submission text or discussion.
+
+Let me know if you want a **step-by-step with screenshots or a short tutorial** on exactly how to do this to fix your Kaggle submission quickly.
+
