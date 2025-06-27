@@ -1,0 +1,66 @@
+# Gemma 3n Hackathon Starter AI Agent (Study Rescue AI)
+# This will help you build your offline AI agent for students using Gemma 3n.
+# Written in Python structure for Tauri/Flutter backend or CLI testing.
+
+import os
+from PIL import Image
+import pytesseract
+from gemma3n import Gemma3nModel  # hypothetical SDK import, replace with actual
+
+# Initialize Gemma 3n model
+gemma = Gemma3nModel(model_size="3n", mode="offline")
+
+def extract_text_from_image(image_path):
+    """Extract handwritten/printed text from note images."""
+    image = Image.open(image_path)
+    text = pytesseract.image_to_string(image)
+    return text
+
+def generate_summary(text):
+    """Generate a short summary using Gemma 3n."""
+    prompt = f"""
+    Summarize the following notes clearly and in simple bullet points:
+    {text}
+    """
+    response = gemma.generate_text(prompt)
+    return response
+
+def generate_qa(text):
+    """Generate 5 Q/A pairs from the notes for practice."""
+    prompt = f"""
+    Create 5 simple questions and their answers from the following notes:
+    {text}
+    """
+    response = gemma.generate_text(prompt)
+    return response
+
+def generate_quiz(text):
+    """Generate MCQs for offline quiz practice."""
+    prompt = f"""
+    Create 5 multiple-choice questions with 4 options each from the following notes, and also provide the correct answer after each question:
+    {text}
+    """
+    response = gemma.generate_text(prompt)
+    return response
+
+if __name__ == "__main__":
+    # Example workflow for CLI or backend
+    image_path = "note_sample.jpg"  # replace with actual path
+    print("Extracting text from image...")
+    extracted_text = extract_text_from_image(image_path)
+
+    print("Generating summary...")
+    summary = generate_summary(extracted_text)
+    print(summary)
+
+    print("Generating Q/A...")
+    qa_pairs = generate_qa(extracted_text)
+    print(qa_pairs)
+
+    print("Generating Quiz...")
+    quiz = generate_quiz(extracted_text)
+    print(quiz)
+
+# You can later connect these functions with your Flutter or Tauri app.
+# Add local storage using SQLite for saving quizzes/summaries offline.
+# Prepare a clean UI with 'Take Note Photo', 'Summarize', 'Q/A', and 'Quiz' buttons to trigger these functions.
